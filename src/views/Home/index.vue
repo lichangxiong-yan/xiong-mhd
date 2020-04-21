@@ -87,7 +87,23 @@ export default {
     onChange (index) {
       console.log('hello', index)
     }
+  },
+
+  created () {
+    // fetch('http://www.mei.com/appapi/silo/eventForH5?categoryId=crossborder&pageIndex=1&timestamp=1587482602832&summary=2b6bcb6c647331cbaa1aec285b054dca&platform_code=H5').then(response => response.json()).then(res => {
+    //   console.log(res)
+    // })
+    // fetch('http://localhost:9090/api/product/recommend?f=json&pageSize=100&pageNo=1&contentType=30&picType=13006', {
+    //   method: 'GET'
+    // }).then(response => response.json()).then(res => {
+    //   console.log(res)
+    // })
+
+    fetch('http://localhost:8080/api/product/recommend?f=json&pageSize=100&pageNo=1&contentType=30&picType=13006').then(response => response.json()).then(res => {
+      console.log(res)
+    })
   }
+
   // // 等正实dom 挂载到页面才能用 这里用 mounted
   // mounted () {
   //   // 这里不能直接 new  所以可以把这个代码注释掉 就不会报错
