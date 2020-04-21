@@ -1,6 +1,6 @@
 <template>
   <!-- 轮播图 begin-->
-  <div class="swiper-container">
+  <div class="swiper-container" ref="swiper">
     <div class="swiper-wrapper">
       <!-- <div class="swiper-slide">Slide 1</div>
       <div class="swiper-slide">Slide 2</div>
@@ -34,7 +34,10 @@ export default {
     // const that = this
     // 这里不能直接 new  所以可以把这个代码注释掉 就不会报错
     /* eslint-disable */
-    new Swiper(".swiper-container", {
+    // $el 组件的根元素
+    // this.$el 还可以使用 this.$refs.swiper
+
+    new Swiper(this.$el, {
       // 如果需要分页器
       pagination: {
         el: ".swiper-pagination"

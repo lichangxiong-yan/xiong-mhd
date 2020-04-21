@@ -13,6 +13,7 @@
       </a>
     </header>
     <!--  首页头部 end -->
+
     <!-- 轮播图 begin-->
     <Swiper class="my-swiper" @change="onChange">
       <SwiperItem>
@@ -26,6 +27,7 @@
       </SwiperItem>
 
     </Swiper>
+
     <!-- 轮播图 end-->
 
     <!-- <nav class="index-nav">
@@ -101,18 +103,29 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+
+// 引入公用的mixins.scss
+// @import "../../assets/styles/mixins.scss";
+// 使用 @ 别名时，需要加一个 ~ 符号
+// !!!! @vue/cli 4.3.1 不需要加 ~
+@import "@/assets/style/mixins.scss";
+
 .page-home {
   height: 100%;
   display: flex;
   flex-direction: column; // 上下布局
 
   .index-header {
+    @include border-bottom;
     display: flex;
     justify-content: space-between; // 两端对齐
     align-items: center; // 上下居中
     padding: 0 20px;
     height: 44px;
     box-sizing: border-box;
+    position: relative;
+    // border-bottom: 1px solid #dbd9dc;
+
     .user-btn {
       width: 25px;
       height: 25px;
