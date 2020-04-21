@@ -138,5 +138,12 @@ table {
 html,
 body,
 #app {
+  // 这路的px单位不希望被转化 rem
+  // 只需要将 px =>  PX
+  max-width: 540PX;
   height: 100%;
+  margin: auto;
+}
+a {
+  text-decoration: none;
 }
