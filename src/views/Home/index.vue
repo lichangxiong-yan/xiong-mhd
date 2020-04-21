@@ -1,5 +1,6 @@
 <template>
   <div class="page-home">
+    <!--  首页头部 begin -->
     <header class="index-header">
       <a href="mine.html?cpid=0">
         <div class="header-user">
@@ -11,13 +12,22 @@
         <div class="header-search"></div>
       </a>
     </header>
-    <section class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
-      </div>
-    </section>
+    <!--  首页头部 end -->
+    <!-- 轮播图 begin-->
+    <Swiper class="my-swiper" @change="onChange">
+      <SwiperItem>
+        <img src="http://img.manhuadao.cn/upload/AdGroup201906/9315f7dd68b346928219f29bd9c89e60.jpg" alt="">
+      </SwiperItem>
+      <SwiperItem>
+        <img src="http://img.manhuadao.cn/upload/AdGroup201903/22b43c03a0f943cda001c5338fe0ddd9.jpg" alt="">
+      </SwiperItem>
+      <SwiperItem>
+        <img src="http://img.manhuadao.cn/upload/AdGroup202003/dda50e4233e34186910fd490aea1cd91.jpg" alt="">
+      </SwiperItem>
+
+    </Swiper>
+    <!-- 轮播图 end-->
+
     <!-- <nav class="index-nav">
       <a href="classify.html?cpid=0">
         <div class="nav-item">
@@ -43,7 +53,7 @@
           <p class="nav-text font-24">历史</p>
         </div>
       </a>
-    </nav> -->
+    </nav>-->
     <!-- <section class="index-recommend">
       <div class="recommend-divide"></div>
       <div class="recommend-title">
@@ -53,16 +63,41 @@
         </div>
       </div>
       <div class="recommend-type-1"></div>
-    </section> -->
+    </section>-->
   </div>
 </template>
 
 <script>
-// 引入swiper的css样式
-// import 'https://unpkg.com/swiper/css/swiper.min.css'
+// 使用 ../ 相对路劲时，如果当前组件位置发生变化
+// 那么相对路径也需要去修改，如果使用 @ 别名的方式，就不需要去修改这个路径了
+// import Swiper from '@/components/Swiper/Swiper.vue'
+// import SwiperItem from '@/components/Swiper/SwiperItem.vue'
+import { Swiper, SwiperItem } from '../../components/Swiper'
 
 export default {
-  name: 'Home'
+  name: 'Home',
+
+  components: {
+    Swiper: Swiper,
+    SwiperItem: SwiperItem
+  },
+  methods: {
+    onChange (index) {
+      console.log('hello', index)
+    }
+  }
+  // // 等正实dom 挂载到页面才能用 这里用 mounted
+  // mounted () {
+  //   // 这里不能直接 new  所以可以把这个代码注释掉 就不会报错
+  //   /* eslint-disable */
+  //   new Swiper(".swiper-container", {
+  //     // 如果需要分页器
+  //     pagination: {
+  //       el: ".swiper-pagination"
+  //     }
+  //   });
+  //   /* eslint-enable */
+  // }
 }
 </script>
 <style lang='scss' scoped>
@@ -81,13 +116,13 @@ export default {
     .user-btn {
       width: 25px;
       height: 25px;
-      background: url("../../assets/ico/123.png") no-repeat; // 不让他重复
+      background: url("../../assets/icon/123.png") no-repeat; // 不让他重复
       background-size: 100%;
     }
     .header-search {
       width: 25px;
       height: 25px;
-      background: url("../../assets/ico/234.png") no-repeat;
+      background: url("../../assets/icon/234.png") no-repeat;
       background-size: 100%;
     }
     .header-logo {
@@ -98,10 +133,8 @@ export default {
     }
   }
 }
-.swiper-container {
-  height: 180px;
-  border-top: 1px solid #cccccc;
-  border-bottom: 1px solid #cccccc;
+.my-swiper img {
+  width: 100%
 }
 .index-nav {
   height: 100px;
@@ -144,33 +177,32 @@ export default {
   }
 }
 .index-recommend .recommend-divide {
-    width: 10rem;
-    height: .26666667rem;
-    background-color: #f4f4f4;
+  width: 10rem;
+  height: 0.26666667rem;
+  background-color: #f4f4f4;
 }
 .recommend-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  .title-group {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 48px;
-    .title-group {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 48px;
 
-      .title-icon {
-        width: 22px;
-        height: 22px;
-
-      }
-      .title-text {
-        color: #3a3a3a;
-        font-weight: 500;
-      }
-      .font-36 {
-         font-size: 18px;
-      }
+    .title-icon {
+      width: 22px;
+      height: 22px;
     }
+    .title-text {
+      color: #3a3a3a;
+      font-weight: 500;
+    }
+    .font-36 {
+      font-size: 18px;
+    }
+  }
 }
 </style>
