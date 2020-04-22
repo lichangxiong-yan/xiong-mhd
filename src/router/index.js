@@ -25,7 +25,11 @@ const router = new VueRouter({
       component: Hello,
       children: [
         { path: 'favorite', component: Favorite },
-        { path: 'history', component: History }
+        { path: 'history', component: History },
+        {
+          path: '',
+          redirect: '/hello/favorite'
+        }
       ]
     },
     { path: '/login', component: Login },
