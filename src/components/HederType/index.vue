@@ -13,9 +13,9 @@
 </template>
 
 <script>
+
 export default {
   name: 'HederType',
-
   props: {
     types: {
       type: Array,

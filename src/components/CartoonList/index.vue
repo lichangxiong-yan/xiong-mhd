@@ -1,23 +1,31 @@
 <template>
-  <section class="classify-list">
-    <div class="list-item">
+  <section class="cartoon-list">
+    <div class="list-item" v-for="item in list" :key="item.bigbook_id">
       <div
         class="item-pic"
-        style='background-image: url("//img.manhuadao.cn/bookcenter/coverimages/168407/168407_749f2be713ea464193b3b4d8e314e00a.jpg");'
+        :style="`background-image: url('${item.coverurl}')`"
       ></div>
       <div class="item-info">
-        <div class="info-book font-30">斗罗大陆</div>
-        <div class="info-author font-26">作者：风炫动漫 穆逢春</div>
-        <div class="info-fans font-26">人气：21.47亿</div>
+        <div class="info-book font-30">{{ item.bigbook_name }}</div>
+        <div class="info-author font-26">作者：{{ item.bigbook_author }}</div>
+        <div class="info-fans font-26">人气：{{ item.bigbookview }}</div>
       </div>
     </div>
-
   </section>
 </template>
 
 <script>
 export default {
-  name: 'CartoonList'
+  name: 'CartoonList',
+  // 那边传过来的 list
+  props: {
+    list: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
+  }
 }
 </script>
 
