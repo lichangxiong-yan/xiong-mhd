@@ -1,8 +1,8 @@
 <template>
   <header class="header-normal">
-    <div class="header-back" @click="goBack" ></div>
+    <div class="header-back" @click="goBack" v-if='showLeft'></div>
     <span class="header-title font-32">{{ title }}</span>
-    <div class="header-search" @click="goSearch"></div>
+    <div class="header-search" @click="goSearch" v-if='showRight'></div>
   </header>
 </template>
 
@@ -14,6 +14,16 @@ export default {
     title: {
       type: String,
       default: '漫画岛'
+    },
+
+    showLeft: {
+      type: Boolean,
+      default: true
+    },
+
+    showRight: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -29,7 +39,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '@/assets/style/mixins.scss';
+@import "@/assets/style/mixins.scss";
 
 .header-normal {
   @include border-bottom;

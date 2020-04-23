@@ -1,7 +1,7 @@
 <template>
   <div class="page-search">
     <header class="search-header">
-      <div class="header-back"></div>
+      <div class="header-back" @click="goBack"></div>
       <div class="header-search">
         <span class="icon-search"></span>
         <input
@@ -38,6 +38,7 @@
         <!-- 热门搜索 end -->
 
         <!-- 最近搜索 begin -->
+        <!-- v-if="historySearchList.length > 0 这是为了没有搜索记录的时候不显示 这个最近搜索框 -->
         <section class="search-history" v-if="historySearchList.length > 0">
           <div class="title font-26">
             <span class="title-title">最近搜索</span>
@@ -122,6 +123,10 @@ export default {
   },
 
   methods: {
+    goBack () {
+      // 使用编程式导航
+      this.$router.back()
+    },
     getHotSearch () {
       getHotSearch()
         .then(res => {

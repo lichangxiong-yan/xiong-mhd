@@ -5,7 +5,7 @@
         class="item-pic"
         :style="`background-image: url('${item.coverurl}')`"
       ></div>
-      <div class="item-info">
+      <div class="item-info" >
         <div class="info-book font-30">{{ item.name }}</div>
         <div class="info-author font-26">作者：{{ item.author }}</div>
         <div class="info-fans font-26">人气：{{ item.view }}</div>

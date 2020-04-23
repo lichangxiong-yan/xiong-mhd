@@ -146,3 +146,17 @@ export const searchIndex = name => {
     }
   })
 }
+
+/**
+ *  搜索结果页面的请求
+ */
+export const getSerachResult = name => {
+  return request({
+    url:
+      '/api/comic_v2/searchbookauthor?apptype=8&appversion=1.0&channel=web-app&type=2&pageno=1&pagesize=100',
+    method: 'GET',
+    params: {
+      name: name
+    }
+  })
+}

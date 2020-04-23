@@ -7,7 +7,6 @@
     <div class="classify-main">
       <cartoon-list :list="cartoonList"></cartoon-list>
     </div>
-
   </div>
 </template>
 <script>
@@ -47,36 +46,20 @@ export default {
   },
   methods: {
     a () {
-      return getTypes()
-        .then(res => {
-          if (res.code === 200) {
-            this.types = res.info
-          } else {
-            alert(res.code_msg)
-          }
-        })
-        .catch(err => {
-          console.log(err)
-          alert('网络异常，请稍后重试')
-        })
+      return getTypes().then(res => {
+        this.types = res.info
+      })
     },
+
     b (subject) {
-      getTypeList(subject)
-        .then(res => {
-          if (res.code === 200) {
-            // 对 res.info 做解密, 并解析成 JSON
-            const info = JSON.parse(unformat(res.info))
-            console.log(info)
-            this.classifyList = info.comicsList
-          } else {
-            alert(res.code_msg)
-          }
-        })
-        .catch(err => {
-          console.log(err)
-          alert('网络异常，请稍后重试')
-        })
+      getTypeList(subject).then(res => {
+        // 对 res.info 做解密, 并解析成 JSON
+        const info = JSON.parse(unformat(res.info))
+        console.log(info)
+        this.classifyList = info.comicsList
+      })
     },
+
     /**
      * 切换分类类型时，触发
      */

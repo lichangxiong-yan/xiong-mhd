@@ -68,18 +68,9 @@ export default {
         .then(res => {
           // 漫画岛项目的每个接口都有 code 字段
           // 这个字段如何是 200 。这个接口才是OK的
-          if (res.code === 200) {
-            // OK
-            this.bannerList = res.info
-          } else {
-            // 不OK, 就报错
-            // TODO, 目前先使用丑陋的 alert。后面可以去用一下 vant 组件库中的组件
-            alert(res.code_msg)
-          }
-        })
-        .catch(err => {
-          console.log(err)
-          alert('网络异常，请稍后重试')
+
+          // OK
+          this.bannerList = res.info
         })
     },
     getIndexRecommend () {

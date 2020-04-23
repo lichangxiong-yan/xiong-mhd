@@ -2,10 +2,15 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
+// import { Notify } from "vant";
+
 // 引入scss
 import './assets/style/base.scss'
 
 Vue.config.productionTip = false
+
+// Vue.use(Notify);
 
 // 全局定义一个过滤器 formatYi
 Vue.filter('formatYi', (value) => {
