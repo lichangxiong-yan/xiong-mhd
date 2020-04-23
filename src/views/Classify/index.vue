@@ -1,11 +1,11 @@
 <template>
   <div class="page-classify">
-    <NormalHeader title="分页"></NormalHeader>
+    <NormalHeader title="分类"></NormalHeader>
 
     <HederType :types="types" @click="onTypeChange"></HederType>
 
     <div class="classify-main">
-      <cartoon-list :list="list"></cartoon-list>
+      <cartoon-list :list="cartoonList"></cartoon-list>
     </div>
   </div>
 </template>
@@ -26,7 +26,22 @@ export default {
   data () {
     return {
       types: [],
-      list: []
+      // 分类数据
+      classifyList: []
+    }
+  },
+  computed: {
+    cartoonList () {
+      // [{bigbook_id, bigbook_name, }] => [{id, name}]
+      return this.classifyList.map(item => {
+        return {
+          id: item.bigbook_id,
+          coverurl: item.coverurl,
+          name: item.bigbook_name,
+          author: item.bigbook_author,
+          view: item.bigbookview
+        }
+      })
     }
   },
   methods: {
@@ -51,7 +66,7 @@ export default {
             // 对 res.info 做解密, 并解析成 JSON
             const info = JSON.parse(unformat(res.info))
             console.log(info)
-            this.list = info.comicsList
+            this.classifyList = info.comicsList
           } else {
             alert(res.code_msg)
           }
@@ -72,6 +87,7 @@ export default {
       // 从新发送 B 接口请求
       this.b(subject)
     }
+
   },
   async created () {
     await this.a()

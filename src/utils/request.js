@@ -18,6 +18,7 @@ instance.interceptors.request.use(
   },
   error => {
     // 对请求错误做些什么
+    // 错误处理 全部放在这里
     return Promise.reject(error)
   }
 )
@@ -25,6 +26,10 @@ instance.interceptors.request.use(
 // 添加响应拦截器
 instance.interceptors.response.use(
   response => {
+    // const res = response.data
+    // if (res.code !==200){
+
+    // }
     // 对响应数据做点什么
     return response.data
   },
