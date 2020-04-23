@@ -7,6 +7,7 @@
     <div class="classify-main">
       <cartoon-list :list="cartoonList"></cartoon-list>
     </div>
+
   </div>
 </template>
 <script>

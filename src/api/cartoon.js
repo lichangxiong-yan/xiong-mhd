@@ -121,3 +121,28 @@ export const getVIPList = () => {
     })
   })
 }
+
+/**
+ * 热门搜索
+ */
+export const getHotSearch = () => {
+  return request({
+    url:
+      '/api/comic/hotsearch?apptype=8&appversion=1.0&channel=web-app&appType=8',
+    method: 'GET'
+  })
+}
+/**
+ * 搜索关键字操作
+ * @param {String} name 关键字
+ */
+export const searchIndex = name => {
+  return request({
+    url:
+      '/api/comic_v2/searchindex?apptype=8&appversion=1.0&channel=web-app&type=2',
+    method: 'GET',
+    params: {
+      name
+    }
+  })
+}
