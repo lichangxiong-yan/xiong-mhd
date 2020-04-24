@@ -1,5 +1,7 @@
 <template>
   <div class="page-classify">
+    <!-- <router-link to="/city"> 当前城市： {{ curCityName }} </rputer-link> -->
+    <router-link to="/city"> 当前城市： {{ curCityName }} </router-link>
     <NormalHeader title="分类"></NormalHeader>
 
     <HederType :types="types" @click="onTypeChange"></HederType>
@@ -15,6 +17,7 @@ import HederType from '@/components/HederType'
 import CartoonList from '@/components/CartoonList'
 import { getTypes, getTypeList } from '@/api/cartoon'
 import { unformat } from '../../utils/apiHeader'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Classify',
@@ -31,6 +34,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('city', ['curCityName']),
     cartoonList () {
       // [{bigbook_id, bigbook_name, }] => [{id, name}]
       return this.classifyList.map(item => {

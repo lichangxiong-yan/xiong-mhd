@@ -1,5 +1,6 @@
 <template>
   <div class="page-home">
+    <router-link to="/city"> 当前城市： {{ curCityName }} </router-link>
     <!--  首页头部 begin -->
     <IndexHeader></IndexHeader>
     <!--  首页头部 end -->
@@ -33,6 +34,7 @@ import IndexHeader from './components/IndexHeader'
 import IndexNav from './components/IndexNav'
 import IndexRecommend from './components/IndexRecommend'
 import { getBanner, getIndexRecommend } from '@/api/cartoon'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
 
@@ -58,6 +60,9 @@ export default {
       bannerList: [],
       recommendList: []
     }
+  },
+  computed: {
+    ...mapGetters('city', ['curCityName'])
   },
   methods: {
     onChange (index) {
