@@ -8,20 +8,28 @@
     <!-- 轮播图 begin-->
     <!-- v-if='bannerList.length > 0  可以解决异步  就是当他里面有数据的时候在渲染 长度为空的时候不显示  这个可以解决轮播图的异步操作 -->
     <div class="index-main">
-      <Swiper class="my-swiper" @change="onChange" v-if="bannerList.length > 0">
-        <SwiperItem v-for="item in bannerList" :key="item.id">
-          <img :src="item.imageurl" alt="" />
-        </SwiperItem>
-      </Swiper>
+      <div>
+        <Swiper
+          class="my-swiper"
+          @change="onChange"
+          v-if="bannerList.length > 0"
+        >
+          <SwiperItem v-for="item in bannerList" :key="item.id">
+            <img :src="item.imageurl" alt="" />
+          </SwiperItem>
+        </Swiper>
 
-      <!-- index-nav -->
-      <IndexNav></IndexNav>
+        <!-- index-nav -->
+        <IndexNav></IndexNav>
 
-      <IndexRecommend v-for="item in recommendList" :key="item.specialid" :info="item"></IndexRecommend>
-
+        <IndexRecommend
+          v-for="item in recommendList"
+          :key="item.specialid"
+          :info="item"
+        ></IndexRecommend>
+      </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -29,6 +37,7 @@
 // 那么相对路径也需要去修改，如果使用 @ 别名的方式，就不需要去修改这个路径了
 // import Swiper from '@/components/Swiper/Swiper.vue'
 // import SwiperItem from '@/components/Swiper/SwiperItem.vue'
+import BScroll from 'better-scroll'
 import { Swiper, SwiperItem } from '../../components/Swiper'
 import IndexHeader from './components/IndexHeader'
 import IndexNav from './components/IndexNav'
@@ -69,14 +78,13 @@ export default {
       console.log('hello', index)
     },
     getBanner () {
-      getBanner()
-        .then(res => {
-          // 漫画岛项目的每个接口都有 code 字段
-          // 这个字段如何是 200 。这个接口才是OK的
+      getBanner().then(res => {
+        // 漫画岛项目的每个接口都有 code 字段
+        // 这个字段如何是 200 。这个接口才是OK的
 
-          // OK
-          this.bannerList = res.info
-        })
+        // OK
+        this.bannerList = res.info
+      })
     },
     getIndexRecommend () {
       getIndexRecommend()
@@ -103,6 +111,11 @@ export default {
   created () {
     this.getBanner()
     this.getIndexRecommend()
+  },
+  mounted () {
+    /* eslint-disable */
+    new BScroll('.index-main')
+    /* eslint-enable */
   }
 }
 </script>
@@ -124,6 +137,5 @@ export default {
   .my-swiper img {
     width: 100%;
   }
-
 }
 </style>

@@ -7,24 +7,28 @@
 
     <div class="city-main">
       <div class="left" ref="scrollLeft">
-        <div
-          class="city-index-section"
-          v-for="item in cityList"
-          :key="item.py"
-          :ref="`section-${item.py}`"
-        >
-          <p>{{ item.py }}</p>
-          <ul>
-            <li
-              v-for="city in item.list"
-              :key="city.cityId"
-              @click="handleClick(city)"
-            >
-              {{ city.name }}
-            </li>
-          </ul>
+         <!-- .left 元素是 better-scroll 的容器，这个容器的第一个子元素才是内容 -->
+        <div>
+          <div
+            class="city-index-section"
+            v-for="item in cityList"
+            :key="item.py"
+            :ref="`section-${item.py}`"
+          >
+            <p>{{ item.py }}</p>
+            <ul>
+              <li
+                v-for="city in item.list"
+                :key="city.cityId"
+                @click="handleClick(city)"
+              >
+                {{ city.name }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
+
       <div class="right">
         <ul>
           <li v-for="item in indexs" :key="item" @click="handleIndex(item)">
@@ -37,6 +41,7 @@
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 import NormalHeader from '../../components/NormlHeader'
 import { mapMutations, mapGetters } from 'vuex'
 
@@ -111,7 +116,10 @@ export default {
       // 计算这个元素距离 左侧顶部的距离
       const offsetTop = targetEl.offsetTop
       // 修改左侧滚动元素的  scrollTop 属性的值
-      this.$refs.scrollLeft.scrollTop = offsetTop
+      // this.$refs.scrollLeft.scrollTop = offsetTop
+
+      // 调用 BScroll 实例的 scrollTo 方法  这个配置可以让他进行滚动 而且要是负数 第一个参数是 x轴 第二个是 y抽
+      this.bscroll.scrollTo(0, -offsetTop)
     },
     handleClick (city) {
       // 1. 改变仓库
@@ -123,6 +131,14 @@ export default {
   },
   created () {
     this.getCityList()
+  },
+  mounted () {
+    // 实例化  选择一个容器  一个dom对象 或者一个 css 选择器
+    /* eslint-disable */
+    this.bscroll =  new BScroll(this.$refs.scrollLeft, {
+      click: true  //  这里是配置 让他可以点击
+    });
+    /* eslint-enable */
   }
 }
 </script>
