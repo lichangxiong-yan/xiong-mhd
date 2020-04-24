@@ -16,7 +16,7 @@
         v-for="childItem in info.comicslist"
         :key="childItem.bigbook_id"
       >
-        <img class="item-pic" :src="JSON.parse(childItem.extension).xsyzfx" />
+        <img class="item-pic" v-lazy="JSON.parse(childItem.extension).xsyzfx" />
         <p class="item-name font-28">{{ childItem.bigbook_name }}</p>
         <p class="item-text font-24">
           {{ JSON.parse(childItem.extension).recommendwords }}

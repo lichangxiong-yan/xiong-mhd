@@ -114,7 +114,9 @@ export default {
   },
   mounted () {
     /* eslint-disable */
-    new BScroll('.index-main')
+    new BScroll('.index-main',{
+      click: true
+    })
     /* eslint-enable */
   }
 }
